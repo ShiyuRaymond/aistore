@@ -1,0 +1,404 @@
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+
+.black-sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 260px;
+    height: 100%;
+    background-color: black;
+    z-index: 1000;
+    padding-top: 20px; /* Space at the top for the white block */
+}
+.sidebar-icon {
+    background-color: black; /* Change the block to yellow */
+    width: 90px; /* Width of the yellow block */
+    height: 29px; /* Height of the yellow block */
+    margin: 0 auto; /* Center the block horizontally */
+    border-radius: 4px; /* Optional: rounded corners */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    margin-bottom: 0
+}
+.sidebar-icon img {
+    max-width: 100%; /* Make sure the image does not exceed its container */
+    max-height: 100%;
+    width: 220px; /* Reduced width */
+    height: auto; /* Height will adjust automatically */
+    margin-left: -135px; /* Move the image to the left */
+    margin-top: -7px; /* Move the image up */
+}
+
+
+.image-carousel {
+    position: relative;
+    left: 314px; /* 260px sidebar width + 54px gap */
+    width: calc(100% - 314px - 314px); /* Remaining width */
+    white-space: nowrap;
+    padding: 20px 0;
+    margin-top: 43px;
+    margin-left: -16px;
+    /* transform-style: preserve-3d;
+    transition: transform 1s; */
+    perspective: 1000px;
+}
+
+.image-carousel .black-image {
+    /* ... Other styles ... */
+    border-radius: 15px; /* Add rounded corners to the carousel images */
+    overflow: hidden; /* Hide overflow content (for rounding) */
+}
+
+.scroll-container {
+    position: relative;
+    height: 538px;
+    display: inline-block;
+    left: 314px; /* 260px sidebar width + 54px gap */
+    right: 0;
+    width: calc(100% - 314px - 314px); /* Remaining width */
+}
+.scroll-container img {
+    display: inline;
+}
+
+.scroll-container > div {
+    display: inline-block;
+    background-color: black;
+    border-radius: 10px;
+    margin-right: 11px;
+    vertical-align: top;
+}
+
+
+.carousel-control {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: transparent;
+    border: none;
+    font-size: 24px; /* Adjust size */
+    cursor: pointer;
+  }
+  
+  .prev {
+    left: 0;
+  }
+  
+  .next {
+    right: 0;
+  }
+  
+  /* Optional: Use FontAwesome icons for arrows */
+  .carousel-control.prev:before {
+    content: '\f104'; /* FontAwesome left arrow icon */
+    font-family: 'FontAwesome';
+  }
+  
+  .carousel-control.next:before {
+    content: '\f105'; /* FontAwesome right arrow icon */
+    font-family: 'FontAwesome';
+  }
+
+  .carousel-dots {
+    text-align: center;
+    padding-top: 20px;
+  }
+  
+  .dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+  }
+  
+  .active, .dot:hover {
+    background-color: #717171;
+  }
+  
+
+
+
+/* .scroll-container > div:first-child {
+    width: 1273px;
+    height: 538px;
+}
+.scroll-container > div:not(:first-child) {
+    width: 307px;
+    height: 538px;
+} */
+
+.button-icon {
+    position: absolute;
+    margin-top: -18px;
+    left: 200px; /* Width of the sidebar plus 180px gap */
+    transform: translateY(-50%); /* Align the button vertically centered to the previous image */
+    width: 30px; /* Width of the button */
+    height: 30px; /* Height of the button */
+    margin-bottom: 0
+}
+
+.button-icon img {
+    width: 100%; /* Ensure the image fills the button */
+    height: auto; /* Maintain aspect ratio */
+}
+.rect-region {
+    width: 260px;
+    height: 63px;
+    background-color: black;
+    margin-top: -53px; /* Add space above the rectangle, adjust as needed */
+    /* Center the rectangle horizontally */
+    margin-left: auto;
+    margin-right: auto;
+    /* This assumes there is no other content that would affect positioning. */
+}
+
+.rect-region:hover {
+    background-color: #2b2a2a; /* The color will change to grey on hover */
+}
+
+/* ... existing styles ... */
+.chat-history-scrollbar {
+
+    position: absolute; /* Positioned absolute within the black sidebar */
+    top: 60px; /* moved down by 15px */
+    left: 0px; /* moved right by 10px */
+    width: 260px;
+    height: calc(100% - 158px);
+    overflow-y: auto; /* Enable vertical scroll */
+    overflow-x: hidden; /* Hide horizontal scroll */
+    scrollbar-width: none; /* For Firefox */
+}
+/* For Webkit browsers like Chrome, Safari */
+.chat-history-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.chat-history {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-family: Helvetica, sans-serif; /* Set font to Helvetica */
+}
+
+.chat-history li {
+    height: 35px;
+    line-height: 35px; /* Center the text vertically */
+    color: #e0e0e0;
+    padding-left: 20px; /* Padding for the text */
+    padding-right: 20px; /* Padding for the text */
+    border-bottom: 1px solid #333; /* Separator between items */
+
+    white-space: nowrap; /* Prevent text from wrapping to a new line */
+    overflow: hidden; /* Hide overflow */
+    text-overflow: ellipsis; /* Add an ellipsis (...) at the end of truncated text */
+    max-width: 260px; /* Adjust the width as needed */
+}
+
+.chat-history li:hover {
+    background-color: #2b2a2a; /* Change to a darker grey */
+}
+.chat-history a {
+    display: block; /* Make the link fill the entire list item */
+    color: #e0e0e0; /* Text color */
+    text-decoration: none; /* Remove underline from links */
+    /* Add other styles as needed */
+}
+
+.chat-history a:hover {
+    /* Styles for hover state, e.g., changing background color */
+}
+.yellow-rectangle {
+    z-index: 1000;
+    position: absolute;
+    width: 2227px;
+    height: 560px;
+    background-color: yellow;
+    margin-left: 297px;
+    border-radius: 10px;
+    display: grid;
+    grid-template-columns: repeat(4, 462px);
+    grid-template-rows: repeat(4, 120px);
+    gap: 20px 126px; /* Enlarged gap between grey rectangles */
+    justify-content: center; /* Center horizontally within the yellow rectangle */
+    align-items: center; /
+    padding: 10px; 
+    margin-top: 22px;
+}
+.grey-rect {
+    width: 462px;
+    height: 120px;
+    background-color: rgba(0, 0, 0, 0);
+    border-radius: 5px; /* Add rounded corners to grey rectangles */
+    margin-top: 45px; /* Move the grey rectangles down by 9 pixels */
+}
+/* Your existing CSS rules */
+
+.input-bar {
+    z-index: 1000;
+    position: absolute;
+    display: block;
+    left: 260px; /* Start to the right of the black sidebar */
+    right: 0;
+    width: calc(100% - 260px - 260px); 
+    
+    align-items: center; /* Vertically centers the child elements */
+    justify-content: center; /* Horizontally centers the child elements */
+
+    margin: auto;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    background-color: #f2f2f2; /* Adjusted for visibility */
+    border-top: 1px solid #ccc; /* Subtle top border for definition */
+    box-sizing: border-box;
+    min-height: 50px; /* Initial height */
+}
+
+.message-input {
+    flex-grow: 1;
+    margin: 0 10px; /* Provides spacing around the input area */
+    padding: 8px 10px;
+    border-radius: 25px; /* Soft rounded corners for the input field */
+    border: 1px solid #d1d1d1; /* Light border for definition */
+    outline: none;
+    max-height: 100px;
+    resize: none; /* Prevent manual resize */
+    overflow-y: auto; /* Allows scrolling when content exceeds the field height */
+    height: auto; /* Height adjusts to content */
+    background-color: #fff; /* Background color for the input field */
+    font-size: 20px; /* Adjust font size as needed for visibility and aesthetics */
+}
+
+
+.input-bar-image {
+    height: 30px; 
+    width: auto; 
+    margin-left: 10px; 
+    cursor: pointer;
+}
+
+.input-bar-image:first-child {
+    cursor: pointer; /* Indicates that images are interactive */
+    margin-right: 10px; /* Space between the image and the textarea */
+}
+
+/* Ensure the rest of your .input-bar-image elements are not absolutely positioned */
+.input-bar-image:not(:first-child) {
+    /* If there are specific styles applied that affect positioning, adjust them here */
+    margin-left: 10px; /* Example: Adjust the left margin for non-first child images */
+}
+
+/* Enlarge the second image by 15% */
+.input-bar-image:nth-of-type(2) {
+    transform: scale(1.2) translateX(-2px); /* Enlarges by 15% and moves left by 2px */
+}
+
+
+/* Enlarge the last image by 10% and move it to the left by 5px */
+.input-bar-image:nth-of-type(3) {
+    transform: scale(1.1);
+    transform: translateX(-7px);
+}
+
+
+.fit-rect {
+    height: 80px; /* Set this to the grey rectangle's height */
+    width: auto; /* Adjusts the width to maintain aspect ratio */
+    object-fit: cover;
+    border-radius: 10px;
+}
+.text-content {
+    font-family: 'Helvetica', sans-serif;
+    color: black;
+    margin-left:100px; /* Adjust as needed for spacing */
+    margin-top: -83px
+}
+
+.text-content .bold-text {
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.text-content p {
+    font-size: 13px; /* Adjust size as needed */
+    margin: 2px 0; /* Reduces the top and bottom margin */
+    line-height: 1.2; /* Adjusts the line height for compactness */
+}
+
+.text-content .grey-text {
+    color: grey;
+}
+.yellow-rect {
+    background-color: rgb(221, 55, 236); /* Yellow background */
+    height: 190px; /* Example height */
+    width: 250px; /* Width to match the sidebar */
+    position: absolute;
+    bottom: 10px; /* Position at the bottom of the sidebar */
+    left: 0; /* Align to the left side of the sidebar */
+    display: flex; /* To align items in a row */
+    align-items: center; /* To vertically center the items */
+    justify-content: flex-start;
+    padding: 5px; 
+}
+.black-circle {
+    background-color: black; /* Black background for the circle */
+    border-radius: 50%; /* Makes the div a circle */
+    width: 30px; /* Diameter of the circle */
+    height: 30px; /* Diameter of the circle */
+    margin-right: 6px; /* Space between the circle and the text */
+    margin-bottom: -90px;
+    margin-left: -120px; 
+}
+
+.text-right-of-circle {
+    color: #000; /* Color of the text */
+    /* Add any other text styling you need */
+    font-family: Helvetica, sans-serif; /* Set font to Helvetica */
+    margin-bottom: -90px;
+    margin-left: 5px; 
+}
+.store-badge {
+    transform: translateX(5px); 
+    /* Other styles for resizing and positioning the SVG image */
+}
+
+.button-container {
+    position: absolute; /* Fixed positioning relative to the viewport */
+    /* bottom: 0;  */
+    left: calc(50% + 140px); /* Move the input bar to the right by 140 pixels */
+    transform: translateX(-50%); /* Center it horizontally */
+    width: 100%; /* Full width of the viewport */
+    display: flex;
+    justify-content: center; /* Center buttons horizontally */
+    flex-wrap: wrap; /* Wrap buttons if needed */
+    background-color: transparent; /* Optional, for visibility */
+    z-index: 1000; /* Ensures it stays above other content */
+    padding: 10px 0; /* Padding for visual spacing */
+}
+
+
+.purple-button {
+    background-color: purple;
+    color: white;
+    border: none;
+    border-radius: 13px; /* Rounded corners */
+    padding: 10px 20px; /* Vertical and horizontal padding */
+    height: 40px; /* Fixed height */
+    width: auto; /* Width will adjust to content */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 15px;
+}
